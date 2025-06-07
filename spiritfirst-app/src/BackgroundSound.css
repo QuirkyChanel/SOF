@@ -1,0 +1,19 @@
+.sound-player {
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  .sound-player button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #7b1fa2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .sound-player button:hover {
+    background-color: #4a148c;
+  }
+  
