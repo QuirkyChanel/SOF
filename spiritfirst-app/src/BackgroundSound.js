@@ -1,48 +1,46 @@
-import React, { useState, useRef } from 'react';
-import './BackgroundSound.css';
+// BackgroundSound.js
+import React, { useRef, useState } from 'react';
 
 const BackgroundSound = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
 
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (isPlaying) {
+    if (playing) {
       audio.pause();
-      setIsPlaying(false);
     } else {
-      audio
-        .play()
-        .then(() => {
-          setIsPlaying(true);
-          console.log('🎶 Ambient sound is now playing.');
-        })
-        .catch((error) => {
-          console.warn('⚠️ Autoplay blocked or failed:', error.message);
-          alert('Click the page or button again to enable sound.');
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          alert("Cannot play audio. Please interact with the page or check your browser settings.");
         });
+      }
     }
+
+    setPlaying(!playing);
   };
 
   return (
-    <div className="sound-player">
+    <div className="audio-player">
       <audio ref={audioRef} loop>
-        <source
-          src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_254d2f0567.mp3?filename=calm-ambient-background-11215.mp3"
-          type="audio/mpeg"
-        />
+        <source src="https://archive.org/download/ambient-nature-sound/ambient-nature-sound.mp3" type="audio/mp3" />
         Your browser does not support the audio element.
       </audio>
       <button onClick={togglePlay}>
-        {isPlaying ? '⏸ Pause Ambient Sounds' : '▶ Play Ambient Sounds'}
+        {playing ? 'Pause Ambient Sound' : 'Play Ambient Sound'}
       </button>
     </div>
   );
 };
 
 export default BackgroundSound;
+
+
+
+
 
 
 

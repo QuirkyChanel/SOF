@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 function MeditationZone() {
-  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes
+  const [timeLeft, setTimeLeft] = useState(120); // 2 minutes
   const [isRunning, setIsRunning] = useState(false);
   const timerRef = useRef(null);
 
@@ -47,12 +47,14 @@ function MeditationZone() {
       )}
       <button onClick={resetMeditation} style={{ marginLeft: '10px' }}>Reset</button>
       <p style={{ marginTop: '15px', fontStyle: 'italic', color: '#555' }}>
-        Focus on your breath. Breathe in deeply, hold, and slowly breathe out.
+        Focus on your breath. Breathe in deeply for 4 seconds, hold for 4 seconds,  slowly breathe out for 4 seconds, and pause for 4 seconds before you begin again.
       </p>
     </div>
   );
 }
 
 export default MeditationZone;
+
+
 
 
